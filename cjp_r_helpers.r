@@ -19,7 +19,7 @@ theme_cjp <- function(){
       #we don't need to do that again
       
       #text elements
-      text = element_text(family="Open Sans",color = "#040C4A"),
+      text = element_text(family="Proxima Nova",color = "#040C4A"),
       axis.text = element_text(color = "#040C4A")
     )
 }
