@@ -19,7 +19,7 @@ theme_cjp <- function(){
       #we don't need to do that again
       
       #text elements
-      text = element_text(family="Open Sans"),
+      #text = element_text(family="Open Sans"),
       axis.text = element_text(color = "#040C4A")
     )
 }
@@ -51,13 +51,16 @@ outersect <- function(x, y) {
          y[!y%in%x]))
 }
 
+#coordinate cartesian for percent graphs (0,1)              
+coord_100pc <- coord_cartesian(ylim=c(0,1))
               
 #colors - temp until I get a more robust solution for ggtheming
               
 rc.gray <- c("#7A9299")
 rc.2.gray <- c("#BBC7CC","#7A9299")
+rc.5.color <- c("#FF4500","#FFD635","#FFA800","#00CCC0","#02315C")
 
-              
+
               
               
 #logit to probably - src: https://sebastiansauer.github.io/convert_logit2prob/
