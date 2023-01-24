@@ -56,3 +56,14 @@ outersect <- function(x, y) {
               
 rc.gray <- c("#7A9299")
 rc.2.gray <- c("#BBC7CC","#7A9299")
+
+              
+              
+              
+#logit to probably - src: https://sebastiansauer.github.io/convert_logit2prob/
+              
+logit2prob <- function(logit){
+  odds <- exp(logit)
+  prob <- odds / (1 + odds)
+  return(prob)
+}
