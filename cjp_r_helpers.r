@@ -50,3 +50,9 @@ outersect <- function(x, y) {
   sort(c(x[!x%in%y],
          y[!y%in%x]))
 }
+
+              
+#colors - temp until I get a more robust solution for ggtheming
+              
+rc.gray <- c("#7A9299")
+rc.2.gray <- c("#BBC7CC","#7A9299")
