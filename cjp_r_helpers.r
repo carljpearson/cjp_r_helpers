@@ -24,6 +24,28 @@ theme_cjp <- function(){
     )
 }
 
+theme_cjp_hz <- function(){ 
+  #font <- "Inter"   #assign font family up front
+  
+  theme_minimal() %+replace%    #replace elements we want to change
+    
+    theme(
+      
+      #grid elements
+      #strip major y gridlines
+      panel.grid.major.y = element_line( size=.1, color="black" ) 
+      panel.grid.major.x = element_blank() ,    
+      panel.grid.minor = element_blank(),    #strip minor gridlines
+      #axis.ticks.x = element_blank(),          #strip axis ticks
+      
+      #since theme_minimal() already strips axis lines, 
+      #we don't need to do that again
+      
+      #text elements
+      #text = element_text(family="Open Sans"),
+      axis.text = element_text(color = "#040C4A")
+    )
+}
 
 
 #read all excel sheets
