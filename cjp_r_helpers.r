@@ -33,7 +33,7 @@ theme_cjp_hz <- function(){
       
       #grid elements
       #strip major y gridlines
-      panel.grid.major.y = element_line( size=.1, color="black" ) 
+      panel.grid.major.y = element_line( size=.1, color="black" ) ,
       panel.grid.major.x = element_blank() ,    
       panel.grid.minor = element_blank(),    #strip minor gridlines
       #axis.ticks.x = element_blank(),          #strip axis ticks
