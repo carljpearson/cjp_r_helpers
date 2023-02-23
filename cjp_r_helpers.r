@@ -96,3 +96,6 @@ logit2prob <- function(logit){
   prob <- odds / (1 + odds)
   return(prob)
 }
+
+#not IN function  
+'%!in%' <- function(x,y)!('%in%'(x,y))         
