@@ -83,7 +83,7 @@ coord_100pc <- coord_cartesian(ylim=c(0,1))
               
 rc.gray <- c("#7A9299")
 rc.2.gray <- c("#BBC7CC","#7A9299")
-rc.5.color <- c("#FF4500","#FFD635","#FFA800","#00CCC0","#02315C")
+rc.5.color <- c("#FFD635","#FFA800","#FF4500","#00CCC0","#02315C")
 
 
 
