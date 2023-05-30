@@ -43,7 +43,7 @@ theme_cjp_hz <- function(){
       
       #text elements
       #text = element_text(family="Open Sans"),
-      axis.text = element_text(color = "#040C4A")
+     # axis.text = element_text(color = "#040C4A")
     )
 }
 
