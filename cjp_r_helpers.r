@@ -85,6 +85,7 @@ coord_100pc <- coord_cartesian(ylim=c(0,1))
 rc.gray <- c("#7A9299")
 rc.2.gray <- c("#BBC7CC","#7A9299")
 rc.5.color <- c("#FFD635","#FFA800","#FF4500","#00CCC0","#02315C")
+                rc.6.color <- c("#FFD635","#FFA800","#FF4500","#00CCC0",#FFF8B8,"#02315C")
 
 # http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/
 cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
