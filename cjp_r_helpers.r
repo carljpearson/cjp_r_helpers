@@ -103,4 +103,4 @@ cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
 #}
 
 #not IN function  
-'%!in%' <- function(x,y)!('%in%'(x,y))         
+%!in% <- function(x,y)!('%in%'(x,y))         
