@@ -19,8 +19,7 @@ theme_cjp <- function(){
       #we don't need to do that again
       
       #text elements
-      #text = element_text(family="Open Sans"),
-      axis.text = element_text(color = "#040C4A")
+      #text = element_text(family="Open Sans")
     )
 }
 
@@ -48,7 +47,7 @@ theme_cjp_hz <- function(){
 }
 
 #100pc coord cartesion
-coord_100pc <- coord_cartesian(ylim=c(0,1))
+coord_y_percent <- coord_cartesian(ylim=c(0,1))
 
 
 #read all excel sheets
@@ -87,6 +86,8 @@ rc.2.gray <- c("#BBC7CC","#7A9299")
 rc.5.color <- c("#FFD635","#FFA800","#FF4500","#00CCC0","#02315C")
               
 rc.6.color <- c("#FFD635","#FFA800","#FF4500","#00CCC0","#FFF8B8","#02315C")
+
+rc.color <- c("#FF4500","#FF5FC2","#FFBF0B","#AEEF0F","#00E2B7","#D82400","#D3168B","#F27300","#65B200","#08A59D")
 
 # http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/
 cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
