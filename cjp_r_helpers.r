@@ -85,7 +85,7 @@ coord_100pc <- coord_cartesian(ylim=c(0,1))
 rc.color <- c("#FF4500","#FF5FC2","#FFBF0B","#AEEF0F","#00E2B7","#D82400","#D3168B","#F27300",  "#65B200",  "#08A59D","#FFDAD7","#FFE6F9","#FFF3C0","#F0FFB3","#E6FFFA")
 rc.color.alt <- c("#FF4500","#FFDAD7","#D82400",  
                   "#FF5FC2","#FFE6F9","#D3168B",
-                  "#FFBF0B","#FFF3C0","#F27300"
+                  "#FFBF0B","#FFF3C0","#F27300",
                   "#AEEF0F","#F0FFB3",  "#65B200",
                   "#00E2B7","#E6FFFA", "#08A59D"
                  )
