@@ -81,13 +81,16 @@ coord_100pc <- coord_cartesian(ylim=c(0,1))
 #colors - temp until I get a more robust solution for ggtheming
        
 ##reddit colors       
-rc.gray <- c("#7A9299")
-rc.2.gray <- c("#BBC7CC","#7A9299")
-rc.5.color <- c("#FFD635","#FFA800","#FF4500","#00CCC0","#02315C")
-              
-rc.6.color <- c("#FFD635","#FFA800","#FF4500","#00CCC0","#FFF8B8","#02315C")
 
-rc.color <- c("#FF4500","#FF5FC2","#FFBF0B","#AEEF0F","#00E2B7","#D82400","#D3168B","#F27300","#65B200","#08A59D")
+rc.color <- c("#FF4500","#FF5FC2","#FFBF0B","#AEEF0F","#00E2B7","#D82400","#D3168B","#F27300",  "#65B200",  "#08A59D","#FFDAD7","#FFE6F9","#FFF3C0","#F0FFB3","#E6FFFA")
+rc.color.alt <- c("#FF4500","#FFDAD7","#D82400",  
+                  "#FF5FC2","#FFE6F9","#D3168B",
+                  "#FFBF0B",#FFF3C0","#F27300"
+                  "#AEEF0F","#F0FFB3",  "#65B200",
+                  "#00E2B7","#E6FFFA", "#08A59D"
+                 )
+rc.color.shade <-  c("#D82400","#D3168B","#F27300",  "#65B200",  "#08A59D")
+rc.color.tint <- c("#FFDAD7","#FFE6F9","#FFF3C0","#F0FFB3","#E6FFFA")
 
 # http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/
 cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
