@@ -1,8 +1,48 @@
+
+##############################
+###### data read_write   #####
+##############################
+
 to.clipboard <- function(x){ 
   clipr::write_clip(x)
   }
+
+
+#read all excel sheets
+read_excel_allsheets <- function(filename, tibble = FALSE) {
+  # I prefer straight data.frames
+  # but if you like tidyverse tibbles (the default with read_excel)
+  # then just pass tibble = TRUE
+  sheets <- readxl::excel_sheets(filename)
+  x <- lapply(sheets, function(X) readxl::read_excel(filename, sheet = X))
+  if(!tibble) x <- lapply(x, as.data.frame)
+  names(x) <- sheets
+  x
+}
+
+#insert new row
+insertRow <- function(existingDF, newrow, r) {
+  existingDF[seq(r+1,nrow(existingDF)+1),] <- existingDF[seq(r,nrow(existingDF)),]
+  existingDF[r,] <- newrow
+  existingDF
+}
+
+#opposite of intersect w/ dplyr
+outersect <- function(x, y) {
+  sort(c(x[!x%in%y],
+         y[!y%in%x]))
+}
   
-  #custom theming
+
+
+##############################
+###### ggplotting        #####
+##############################
+
+#100pc coord cartesion
+coord_y_percent <- coord_cartesian(ylim=c(0,1))
+
+
 theme_cjp <- function(){ 
   #font <- "Inter"   #assign font family up front
   
@@ -46,34 +86,7 @@ theme_cjp_hz <- function(){
     )
 }
 
-#100pc coord cartesion
-coord_y_percent <- coord_cartesian(ylim=c(0,1))
 
-
-#read all excel sheets
-read_excel_allsheets <- function(filename, tibble = FALSE) {
-  # I prefer straight data.frames
-  # but if you like tidyverse tibbles (the default with read_excel)
-  # then just pass tibble = TRUE
-  sheets <- readxl::excel_sheets(filename)
-  x <- lapply(sheets, function(X) readxl::read_excel(filename, sheet = X))
-  if(!tibble) x <- lapply(x, as.data.frame)
-  names(x) <- sheets
-  x
-}
-
-#insert new row
-insertRow <- function(existingDF, newrow, r) {
-  existingDF[seq(r+1,nrow(existingDF)+1),] <- existingDF[seq(r,nrow(existingDF)),]
-  existingDF[r,] <- newrow
-  existingDF
-}
-
-#opposite of intersect w/ dplyr
-outersect <- function(x, y) {
-  sort(c(x[!x%in%y],
-         y[!y%in%x]))
-}
 
 #coordinate cartesian for percent graphs (0,1)              
 coord_100pc <- coord_cartesian(ylim=c(0,1))
@@ -98,7 +111,29 @@ cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
 
               
               
-##logit to probably - src: https://sebastiansauer.github.io/convert_logit2prob/
+
+
+##############################
+###### calc    functions #####
+##############################
+
+
+summarize_binary_to_BinomCI <- function(data,value){
+  data %>%
+  summarize(total=n(),
+            n=sum(value),
+            prop=mean(value),
+            prop_adj = BinomCI(n, total, conf.level = 0.95,method = "agresti-coull")[1],
+            lower_ci = BinomCI(n, total, conf.level = 0.95,method = "agresti-coull")[2],
+            upper_ci = BinomCI(n, total, conf.level = 0.95,method = "agresti-coull")[3]
+  )
+  
+}
+
+
+
+
+              ##logit to probably - src: https://sebastiansauer.github.io/convert_logit2prob/
               
 #logit2prob <- function(logit){
 #  odds <- exp(logit)
@@ -107,4 +142,4 @@ cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
 #}
 
 #not IN function  
-`%!in%` <- function(x,y)!('%in%'(x,y))         
+`%!in%` <- function(x,y)!('%in%'(x,y))     
