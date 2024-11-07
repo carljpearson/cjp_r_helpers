@@ -30,9 +30,15 @@ package.check <- lapply(
 ###### data read_write   #####
 ##############################
 
-to.clipboard <- function(x){ 
-  clipr::write_clip(x)
+
+#paste to clipboard, optionally rounding numeric vars
+to.clipboard <- function(x, round_numeric = FALSE) {
+  if (round_numeric) {
+    x <- x %>%
+      mutate(across(where(is.numeric), ~ round(., 4)))
   }
+  clipr::write_clip(x)
+}
 
 
 #read all excel sheets
