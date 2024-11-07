@@ -143,3 +143,10 @@ summarize_binary_to_BinomCI <- function(data,value){
 
 #not IN function  
 `%!in%` <- function(x,y)!('%in%'(x,y))     
+
+
+##############################
+###### get data          #####
+##############################
+
+country_data <- read_csv( RCurl::getURL("https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/refs/heads/master/all/all.csv"))
