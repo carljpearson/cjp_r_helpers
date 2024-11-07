@@ -172,7 +172,7 @@ summarize_binary_to_BinomCI <- function(data,value){
 
 
 
-              ##logit to probably - src: https://sebastiansauer.github.io/convert_logit2prob/
+              ##logit to probability - src: https://sebastiansauer.github.io/convert_logit2prob/
               
 #logit2prob <- function(logit){
 #  odds <- exp(logit)
