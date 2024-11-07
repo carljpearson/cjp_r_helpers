@@ -53,6 +53,11 @@ read_excel_allsheets <- function(filename, tibble = FALSE) {
   x
 }
 
+
+##############################
+###### move/filter data  #####
+##############################
+              
 #insert new row
 insertRow <- function(existingDF, newrow, r) {
   existingDF[seq(r+1,nrow(existingDF)+1),] <- existingDF[seq(r,nrow(existingDF)),]
@@ -66,7 +71,8 @@ outersect <- function(x, y) {
          y[!y%in%x]))
 }
   
-
+#not IN function  
+`%!in%` <- function(x,y)!('%in%'(x,y))    
 
 ##############################
 ###### ggplotting        #####
@@ -174,12 +180,11 @@ summarize_binary_to_BinomCI <- function(data,value){
 #  return(prob)
 #}
 
-#not IN function  
-`%!in%` <- function(x,y)!('%in%'(x,y))     
+ 
 
 
 ##############################
-###### get data          #####
+###### datasets          #####
 ##############################
 
 country_data <- read_csv( RCurl::getURL("https://raw.githubusercontent.com/carljpearson/cjp_r_helpers/refs/heads/main/country_data.csv"))
