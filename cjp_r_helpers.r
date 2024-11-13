@@ -12,7 +12,7 @@
 ## from CRAN and then loaded.
 
 ## First specify the packages of interest
-packages = c("readxl", "dplyr","RCurl","ggplot2","DescTools","readr)
+packages = c("readxl", "dplyr","RCurl","ggplot2","DescTools","readr")
 
 ## Now load or install&load all
 package.check <- lapply(
