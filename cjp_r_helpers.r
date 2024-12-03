@@ -157,9 +157,8 @@ cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
 ##############################
 
 
-summarize_binary_to_BinomCI <- function(data,binary.column){
+summarize_binary_to_BinomCI <- function(data){
   
-  value  = binary.column
   data %>%
   summarize(total=n(),
             n=sum(value),
