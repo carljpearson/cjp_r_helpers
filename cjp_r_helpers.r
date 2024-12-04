@@ -153,7 +153,7 @@ cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
 
 
 ##############################
-###### calc    functions #####
+#### pipe extra functions ####
 ##############################
 
 
@@ -170,9 +170,18 @@ summarize_binary_to_BinomCI <- function(data){
   
 }
 
+#create a function that blends rowwise and mutate
+rowwise_mutate  <- function(.data, ...) {
+  .data %>%
+    rowwise() %>%
+    mutate(...)
+}
 
+##############################
+###### calc    functions #####
+##############################
 
-
+              
               ##logit to probability - src: https://sebastiansauer.github.io/convert_logit2prob/
               
 #logit2prob <- function(logit){
