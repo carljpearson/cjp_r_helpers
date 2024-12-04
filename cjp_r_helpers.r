@@ -164,8 +164,8 @@ summarize_binary_to_BinomCI <- function(data){
             n=sum(value),
             prop=mean(value),
             prop_adj = BinomCI(n, total, conf.level = 0.95,method = "agresti-coull")[1],
-            lower_ci = BinomCI(n, total, conf.level = 0.95,method = "agresti-coull")[2],
-            upper_ci = BinomCI(n, total, conf.level = 0.95,method = "agresti-coull")[3]
+            prop_low = BinomCI(n, total, conf.level = 0.95,method = "agresti-coull")[2],
+            prop_upp = BinomCI(n, total, conf.level = 0.95,method = "agresti-coull")[3]
   )
   
 }
