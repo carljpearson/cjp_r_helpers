@@ -129,6 +129,18 @@ theme_cjp_hz <- function(){
 
 #coordinate cartesian for percent graphs (0,1)              
 coord_100pc <- coord_cartesian(ylim=c(0,1))
+
+#flip legend for coord_flip to synchronize
+
+coord_flip_legend_reverse <- function(data,...){
+coord_flip() +
+  guides(fill = guide_legend(reverse = TRUE))
+
+  
+
+  
+}
+              
               
 #colors - temp until I get a more robust solution for ggtheming
        
