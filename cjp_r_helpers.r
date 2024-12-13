@@ -25,6 +25,70 @@ package.check <- lapply(
   }
 )
 
+## command to load packages I generally use
+
+load_packages <- function(
+  linear_regression = FALSE,
+  imputation = FALSE,
+  ordinal = FALSE,
+  text = FALSE,
+  weighting_surveys = FALSE,
+  ggplot_advanced = FALSE
+) {
+  # Initialize an empty vector for packages
+  packages <- c()
+  
+  # Linear regression packages
+  if (linear_regression) {
+    packages <- c(packages, "car", "sjstats", "sjPlot", "lme4", "broom", "emmeans", "effectsize")
+  }
+  
+  # Imputation packages
+  if (imputation) {
+    packages <- c(packages, "mice", "miceRanger")
+  }
+  
+  # Ordinal packages
+  if (ordinal) {
+    packages <- c(packages, "MASS", "kableExtra", "shapr")
+  }
+  
+  # Text packages
+  if (text) {
+    packages <- c(packages, "tidytext", "SnowballC")
+  }
+  
+  # Weighting surveys packages
+  if (weighting_surveys) {
+    packages <- c(packages, "survey", "srvyr", "svyweight", "autumn")
+  }
+  
+  # ggplot advanced packages
+  if (ggplot_advanced) {
+    packages <- c(packages, "ggflags", "ggrepel", "ggpubr", "RColorBrewer")
+  }
+  
+  # Default packages (always run last)
+  default_packages <- c(
+    "DescTools",
+    "psych",
+    "tidyverse",
+    "here",
+    "jtools",
+    "rstatix",
+    "janitor",
+    "scales",
+    "forcats",
+    "stringr"
+  )
+  
+  # Combine all packages with default packages last
+  all_packages <- c(packages, default_packages)
+  
+  # Load all packages
+  lapply(all_packages, library, character.only = TRUE)
+}
+
 
 ##############################
 ###### data read_write   #####
