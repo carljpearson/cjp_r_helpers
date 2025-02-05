@@ -163,7 +163,7 @@ theme_cjp <- function(){
       #we don't need to do that again
       
       #text elements
-      text = element_text(family="Reddit Sans")
+      text = element_text(family="Reddit Sans"),
       axis.text = element_text(family="Reddit Sans"),
       title.text element_text(family="Reddit Sans")
     )
@@ -187,7 +187,7 @@ theme_cjp_hz <- function(){
       #we don't need to do that again
       
       #text elements
-      text = element_text(family="Reddit Sans")
+      text = element_text(family="Reddit Sans"),
       axis.text = element_text(family="Reddit Sans"),
       title.text element_text(family="Reddit Sans"),
     )
