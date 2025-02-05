@@ -72,14 +72,15 @@ load_packages <- function(
   default_packages <- c(
     "DescTools",
     "psych",
-    "tidyverse",
     "here",
     "jtools",
     "rstatix",
     "janitor",
     "scales",
     "forcats",
-    "stringr"
+    "stringr",
+    "extrafont",
+    "tidyverse"
   )
   
   # Combine all packages with default packages last
@@ -147,7 +148,7 @@ coord_y_percent <- coord_cartesian(ylim=c(0,1))
 
 
 theme_cjp <- function(){ 
-  #font <- "Inter"   #assign font family up front
+  
   
   theme_minimal() %+replace%    #replace elements we want to change
     
@@ -162,12 +163,14 @@ theme_cjp <- function(){
       #we don't need to do that again
       
       #text elements
-      #text = element_text(family="Open Sans")
+      text = element_text(family="Reddit Sans")
+      axis.text = element_text(family="Reddit Sans"),
+      title.text element_text(family="Reddit Sans")
     )
 }
 
 theme_cjp_hz <- function(){ 
-  #font <- "Inter"   #assign font family up front
+  
   
   theme_minimal() %+replace%    #replace elements we want to change
     
@@ -184,8 +187,9 @@ theme_cjp_hz <- function(){
       #we don't need to do that again
       
       #text elements
-      #text = element_text(family="Open Sans"),
-     # axis.text = element_text(color = "#040C4A")
+      text = element_text(family="Reddit Sans")
+      axis.text = element_text(family="Reddit Sans"),
+      title.text element_text(family="Reddit Sans"),
     )
 }
 
