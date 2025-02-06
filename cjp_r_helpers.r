@@ -165,7 +165,7 @@ theme_cjp <- function(){
       #text elements
       text = element_text(family="Reddit Sans"),
       axis.text = element_text(family="Reddit Sans"),
-      title.text element_text(family="Reddit Sans")
+      title.text = element_text(family="Reddit Sans")
     )
 }
 
