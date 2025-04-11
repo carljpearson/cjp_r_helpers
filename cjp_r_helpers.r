@@ -50,7 +50,7 @@ load_packages <- function(
   
   # Ordinal packages
   if (ordinal) {
-    packages <- c(packages, "MASS", "kableExtra", "shapr","ordinal","brant","generalhoslem")
+    packages <- c(packages, "MASS", "kableExtra", "shapr","ordinal","brant")
   }
   
   # Text packages
