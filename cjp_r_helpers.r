@@ -45,7 +45,7 @@ load_packages <- function(
   
   # Imputation packages
   if (imputation) {
-    packages <- c(packages, "mice", "miceRanger")
+    packages <- c(packages, "mice", "miceRanger","mitools")
   }
   
   # Ordinal packages
