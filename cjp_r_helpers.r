@@ -270,6 +270,38 @@ rowwise_mutate  <- function(.data, ...) {
 #  return(prob)
 #}
 
+              
+##############################
+##### weighing  functions ####
+##############################
+
+# Define the function to create sample margin formulas
+create_raking_formulas <- function(raking_vars) {
+  # Check if raking_vars is a character vector
+  if (!is.character(raking_vars)) {
+    stop("Input 'raking_vars' must be a character vector.")
+  }
+  
+  # Check if raking_vars is empty
+  if (length(raking_vars) == 0) {
+    warning("Input 'raking_vars' is empty. Returning an empty list.")
+    return(list())
+  }
+  
+  # Use lapply to create a list of formulas
+  # For each variable name in raking_vars, create a formula of the form ~variable_name
+  sample_margins_formulas <- lapply(raking_vars, function(var) {
+    as.formula(paste0("~", var))
+  })
+  
+  # Set the names of the list elements to be the variable names
+  names(sample_margins_formulas) <- raking_vars
+  
+  # Return the named list of formulas
+  return(sample_margins_formulas)
+}
+              
+
  
 
 
