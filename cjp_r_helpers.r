@@ -227,8 +227,41 @@ rc.color.tint <- c("#FFDAD7","#FFE6F9","#FFF3C0","#F0FFB3","#E6FFFA")
 # http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/
 cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
+#truncate and wrap scale x labels
 
-              
+              scale_x_discrete_formatted <- function(truncation_length = NULL, wrap_width = NULL, ...) {
+  
+  # Define the label formatting function that will be passed to scale_x_discrete
+  # This inner function will have access to truncation_length and wrap_width
+  # from the environment of scale_x_discrete_formatted
+  custom_label_formatter <- function(x_labels) {
+    # Start with the original labels
+    processed_labels <- x_labels
+    
+    # 1. Apply truncation if truncation_length is provided and valid
+    if (!is.null(truncation_length) && is.numeric(truncation_length) && truncation_length > 0) {
+      processed_labels <- stringr::str_trunc(processed_labels,
+                                             width = truncation_length,
+                                             side = "right",
+                                             ellipsis = "...")
+    }
+    
+    # 2. Apply wrapping if wrap_width is provided and valid
+    if (!is.null(wrap_width) && is.numeric(wrap_width) && wrap_width > 0) {
+      # Ensure processed_labels is a character vector for str_wrap
+      # str_trunc can return a character vector, but if it wasn't called,
+      # x_labels might be a factor.
+      processed_labels <- stringr::str_wrap(as.character(processed_labels),
+                                            width = wrap_width)
+    }
+    
+    return(processed_labels)
+  }
+  
+  # Return the scale_x_discrete layer, applying the custom_label_formatter
+  # and passing through any other arguments (...)
+  ggplot2::scale_x_discrete(labels = custom_label_formatter, ...)
+}
               
 
 
