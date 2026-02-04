@@ -60,7 +60,7 @@ load_packages <- function(
   
   # Weighting surveys packages
   if (weighting_surveys) {
-    packages <- c(packages, "survey", "srvyr", "svyweight", "autumn")
+    packages <- c(packages, "survey", "srvyr", "svyweight")
   }
   
   # ggplot advanced packages
