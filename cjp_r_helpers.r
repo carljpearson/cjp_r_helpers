@@ -132,17 +132,17 @@ summarize_for_llm <- function(df, to_clipboard = TRUE) {
       n_nas = map_int(df, ~ sum(is.na(.x))),
       details = map2_chr(df, data_type, function(col_data, type) {
         
-        # --- THE FIX IS HERE ---
+        # --- Catch 100% NA columns right away ---
+        if (all(is.na(col_data))) {
+          return("All values are NA")
+        }
+        
+        # --- Type-specific summaries ---
         if (type %in% c("numeric", "integer")) {
-          if (all(is.na(col_data))) {
-            "All values are NA"
-          } else {
-            paste0("Min: ", round(min(col_data, na.rm = TRUE), 2), 
-                   " | Max: ", round(max(col_data, na.rm = TRUE), 2), 
-                   " | Mean: ", round(mean(col_data, na.rm = TRUE), 2))
-          }
-        # -----------------------
-          
+          paste0("Min: ", round(min(col_data, na.rm = TRUE), 2), 
+                 " | Max: ", round(max(col_data, na.rm = TRUE), 2), 
+                 " | Mean: ", round(mean(col_data, na.rm = TRUE), 2))
+                 
         } else if (type %in% c("factor", "character")) {
           unique_vals <- unique(col_data[!is.na(col_data)])
           n_unique <- length(unique_vals)
@@ -157,9 +157,9 @@ summarize_for_llm <- function(df, to_clipboard = TRUE) {
         } else if (type == "logical") {
           paste0("TRUE: ", sum(col_data == TRUE, na.rm = TRUE), 
                  " | FALSE: ", sum(col_data == FALSE, na.rm = TRUE))
-          
+                 
         } else {
-          ""
+          "" # For unsupported types, leave details blank
         }
       })
     )
