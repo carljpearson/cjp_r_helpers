@@ -118,6 +118,78 @@ read_excel_allsheets <- function(filename, tibble = FALSE) {
   x
 }
 
+##############################
+###### working with LLMs #####
+##############################
+
+summarize_for_llm <- function(df, to_clipboard = TRUE) {
+  n_rows <- nrow(df)
+  n_cols <- ncol(df)
+  
+  summary_df <- tibble(column_name = names(df)) %>%
+    mutate(
+      data_type = map_chr(df, ~ class(.x)[1]),
+      n_nas = map_int(df, ~ sum(is.na(.x))),
+      details = map2_chr(df, data_type, function(col_data, type) {
+        
+        # --- THE FIX IS HERE ---
+        if (type %in% c("numeric", "integer")) {
+          if (all(is.na(col_data))) {
+            "All values are NA"
+          } else {
+            paste0("Min: ", round(min(col_data, na.rm = TRUE), 2), 
+                   " | Max: ", round(max(col_data, na.rm = TRUE), 2), 
+                   " | Mean: ", round(mean(col_data, na.rm = TRUE), 2))
+          }
+        # -----------------------
+          
+        } else if (type %in% c("factor", "character")) {
+          unique_vals <- unique(col_data[!is.na(col_data)])
+          n_unique <- length(unique_vals)
+          
+          if (n_unique <= 10) {
+            paste0("Levels: [", paste(unique_vals, collapse = ", "), "]")
+          } else {
+            paste0(n_unique, " unique values (Sample: ", 
+                   paste(head(unique_vals, 4), collapse = ", "), ", ...)")
+          }
+          
+        } else if (type == "logical") {
+          paste0("TRUE: ", sum(col_data == TRUE, na.rm = TRUE), 
+                 " | FALSE: ", sum(col_data == FALSE, na.rm = TRUE))
+          
+        } else {
+          ""
+        }
+      })
+    )
+  
+  header <- sprintf("### Dataset Summary\n**Rows:** %d\n**Columns:** %d\n\n**Column Details:**\n", n_rows, n_cols)
+  
+  body <- summary_df %>%
+    mutate(
+      markdown_line = sprintf("- **`%s`** (`%s`): %d NAs. %s", 
+                              column_name, data_type, n_nas, details)
+    ) %>%
+    pull(markdown_line) %>%
+    paste(collapse = "\n")
+  
+  final_text <- paste0(header, body, "\n")
+  
+  cat(final_text)
+  
+  if (to_clipboard) {
+    if (clipr::clipr_available()) {
+      clipr::write_clip(final_text)
+      message("\n---> Summary successfully copied to clipboard! <---")
+    } else {
+      warning("\n---> Clipboard not available on this system. Output printed to console only. <---")
+    }
+  }
+  
+  invisible(summary_df)
+}
+
 
 ##############################
 ###### move/filter data  #####
